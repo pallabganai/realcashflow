@@ -4,8 +4,7 @@ import { CashFlowService } from '../services/cash-flow.service';
 @Component({
   selector: 'app-property-value',
   templateUrl: './property-value.component.html',
-  styleUrls: ['./property-value.component.css'],
-  providers: [CashFlowService]
+  styleUrls: ['./property-value.component.css']
 })
 export class PropertyValueComponent implements OnInit {
   public propertyPrice = 0;
@@ -14,9 +13,11 @@ export class PropertyValueComponent implements OnInit {
   constructor(private  _cashFlowService: CashFlowService) { }
 
   ngOnInit() {
+    this.calculateMarketValue();
   }
 
   calculateMarketValue() {
+    this._cashFlowService.propertyMarketValueDum = this.propertyPrice + this.renovationCosts;
     console.log('calculateMarketValue called');
     this._cashFlowService.calculateSMarketValue();
   }

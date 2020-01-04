@@ -5,7 +5,7 @@ import { Subject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CashFlowService {
-  public propertyMarketValueDum = 100;
+  public propertyMarketValueDum;
   private propertyMarketValue: Subject<number> = new Subject<number>();
 
 
@@ -16,7 +16,7 @@ export class CashFlowService {
   calculateSMarketValue() {
     console.log('calculateMarketValue in service called b4 - ' +this.propertyMarketValueDum);
     //this.propertyMarketValue = 200;
-    this.propertyMarketValue.next(this.propertyMarketValueDum++);
+    this.propertyMarketValue.next(this.propertyMarketValueDum);
     console.log('calculateMarketValue in service called ar - ' +this.propertyMarketValueDum);
   }
 
