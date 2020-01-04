@@ -1,0 +1,46 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+<p class="h4">PROPERTY VALUE</p>
+
+<form>
+<div class="form-group">
+    <label for="propertyPrice">Property Price</label>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <div class="input-group-text">$</div>
+        </div>
+        <input type="number" class="form-control" name="propertyPrice" [(ngModel)]="propertyPrice" (change)="calculateMarketValue()">
+        <div class="input-group-append">
+            <span class="input-group-text">.00</span>
+        </div>
+      </div>
+</div>
+<div class="form-group">
+    <label for="renovationCosts">Renovation costs</label>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <div class="input-group-text">$</div>
+        </div>
+        <input type="number" class="form-control" name="renovationCosts" [(ngModel)]="renovationCosts" (change)="calculateMarketValue()">
+        <div class="input-group-append">
+            <span class="input-group-text">.00</span>
+        </div>
+      </div>
+</div>
+<div class="form-group">
+    <label for="renovationCosts">Property market value</label>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <div class="input-group-text">$</div>
+        </div>
+        <input type="number" class="form-control" value="{{propertyPrice + renovationCosts}}" readonly>
+        <div class="input-group-append">
+            <span class="input-group-text">.00</span>
+        </div>
+      </div>
+</div>
+<button type="submit" class="btn btn-primary">
+    <i class="material-icons text-white">save</i>
+</button>
+</form>
