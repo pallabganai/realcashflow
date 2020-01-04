@@ -10,7 +10,7 @@
         <div class="input-group-prepend">
           <div class="input-group-text">$</div>
         </div>
-        <input type="number" class="form-control" name="propertyPrice" [(ngModel)]="propertyPrice" (change)="calculateMarketValue()">
+        <input type="number" class="form-control" name="propertyPrice" [(ngModel)]="propertyValue.propertyPrice" (change)="calculateMarketValue(propertyValue)">
         <div class="input-group-append">
             <span class="input-group-text">.00</span>
         </div>
@@ -22,7 +22,7 @@
         <div class="input-group-prepend">
           <div class="input-group-text">$</div>
         </div>
-        <input type="number" class="form-control" name="renovationCosts" [(ngModel)]="renovationCosts" (change)="calculateMarketValue()">
+        <input type="number" class="form-control" name="renovationCosts" [(ngModel)]="propertyValue.renovationCosts" (change)="calculateMarketValue(propertyValue)">
         <div class="input-group-append">
             <span class="input-group-text">.00</span>
         </div>
@@ -34,7 +34,7 @@
         <div class="input-group-prepend">
           <div class="input-group-text">$</div>
         </div>
-        <input type="number" class="form-control" value="{{propertyPrice + renovationCosts}}" readonly>
+        <input type="number" class="form-control" value="{{propertyValue.renovationCosts + propertyValue.propertyPrice}}" readonly>
         <div class="input-group-append">
             <span class="input-group-text">.00</span>
         </div>

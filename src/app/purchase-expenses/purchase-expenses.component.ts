@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CashFlowService } from '../services/cash-flow.service';
 import { Subscription } from 'rxjs';
+import { PropertyValue } from '../model/property-value.model';
 
 @Component({
   selector: 'app-purchase-expenses',
@@ -13,21 +14,31 @@ export class PurchaseExpensesComponent implements OnInit {
   public buyersAgentFee;
   public conveyance;
   public buildingInspection;
-  subscription: Subscription;
+  marketValueSubscription: Subscription;
+  propertyPriceSubscription: Subscription;
+  public propertyValue: PropertyValue;
 
   constructor(private  _cashFlowService: CashFlowService) { }
 
   ngOnInit() {
-    this.stampDuty = this._cashFlowService.propertyMarketValueDum;
-    this.subscription = this._cashFlowService.reflectChange().subscribe(value => {
-      this.stampDuty = value
-      console.log('New Value - ' +value);
+    this.stampDuty = 0;
+    this.marketValueSubscription = this._cashFlowService.marketValueChanged().subscribe(value => {
+      this.stampDuty = value;
+      console.log('New stampDuty=marketValueChanged Value - ' +value);
     });
+
+    this.transferRegistrationFee = 0;
+    this.propertyPriceSubscription = this._cashFlowService.propertyPriceChanged().subscribe(value => {
+      this.transferRegistrationFee = value;
+      console.log('New transferRegistrationFee=propertyPriceChanged Value - ' +value);
+    });
+
     console.log('ngOnInit of PurchaseExpensesComponent');
   }
 
   ngOnDestroy() {
     // unsubscribe to ensure no memory leaks
-    this.subscription.unsubscribe();
+    this.marketValueSubscription.unsubscribe();
+    this.propertyPriceSubscription.unsubscribe();
 }
 }

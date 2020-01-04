@@ -5,23 +5,26 @@ import { Subject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CashFlowService {
-  public propertyMarketValueDum;
   private propertyMarketValue: Subject<number> = new Subject<number>();
+  private propertyPriceValue: Subject<number> = new Subject<number>();
 
 
-  constructor() { 
-    this.propertyMarketValue.next(this.propertyMarketValueDum);
+  constructor() {}
+
+  calculateSMarketValueAA(marketValue: number, propertyPrice: number) {
+    console.log('calculateMarketValue in service marketValue - ' +marketValue);
+    this.propertyMarketValue.next(marketValue);
+    console.log('calculateMarketValue in service propertyPrice - ' +propertyPrice);
+    this.propertyPriceValue.next(propertyPrice);
   }
 
-  calculateSMarketValue() {
-    console.log('calculateMarketValue in service called b4 - ' +this.propertyMarketValueDum);
-    //this.propertyMarketValue = 200;
-    this.propertyMarketValue.next(this.propertyMarketValueDum);
-    console.log('calculateMarketValue in service called ar - ' +this.propertyMarketValueDum);
-  }
-
-  reflectChange(): Observable<number> {
-    console.log('reflectChange in service called');
+  marketValueChanged(): Observable<number> {
+    console.log('marketValueChanged in service called');
     return this.propertyMarketValue.asObservable();
+  }
+
+  propertyPriceChanged(): Observable<number> {
+    console.log('propertyPriceChanged in service called');
+    return this.propertyPriceValue.asObservable();
   }
 }
