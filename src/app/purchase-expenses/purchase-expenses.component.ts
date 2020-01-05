@@ -39,5 +39,5 @@ export class PurchaseExpensesComponent implements OnInit {
     // unsubscribe to ensure no memory leaks
     this.marketValueSubscription.unsubscribe();
     this.propertyPriceSubscription.unsubscribe();
-}
+  }
 }
